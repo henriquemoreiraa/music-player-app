@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import {useEffect, useState} from 'react';
+import { musics } from './data/data';
+import * as C from './styles'
 import './App.css';
 
 function App() {
+  const [datas, setData] = useState([{}])
+
+  useEffect(() => {
+    setData(musics)
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <C.Container>
+        <div className='oi'></div>
+        <div>
+        <h1 className='title'>All musics</h1>
+          <div className='divSongs'>
+            <C.Music>
+            {musics.map(item => (
+              <div>
+                  <img src={item.album_img} alt="" />
+                  <h1>{item.name}</h1>
+                  <h3>{item.author}</h3>
+                  <audio src={item.audio}></audio>
+                </div>
+              ))
+              }
+            </C.Music>
+          </div>
+        </div>
+      </C.Container>
+        <div className='ola'>
+      
+        </div>
     </div>
   );
 }
