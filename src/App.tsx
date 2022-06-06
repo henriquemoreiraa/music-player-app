@@ -1,39 +1,41 @@
 import {useEffect, useState} from 'react';
 import { musics } from './data/data';
 import * as C from './styles'
+import { Player } from './components/player';
+import { musicPlaying } from './types/types';
 import './App.css';
+import { Musics } from './components/musics';
 
 function App() {
-  const [datas, setData] = useState([{}])
-
-  useEffect(() => {
-    setData(musics)
-  }, [])
+  const [id, setId] = useState('')
 
   return (
     <div>
       <C.Container>
         <div className='oi'></div>
-        <div>
+        <div className='top'>
         <h1 className='title'>All musics</h1>
           <div className='divSongs'>
             <C.Music>
-            {musics.map(item => (
-              <div>
-                  <img src={item.album_img} alt="" />
-                  <h1>{item.name}</h1>
-                  <h3>{item.author}</h3>
-                  <audio src={item.audio}></audio>
-                </div>
+            {musics.map(music => (
+              <Musics 
+                img={music.album_img}
+                name={music.name}
+                author={music.author}
+                audio={music.audio}
+                setId={setId}
+                id={music.id}
+              />
               ))
               }
             </C.Music>
           </div>
         </div>
       </C.Container>
-        <div className='ola'>
-      
-        </div>
+          <Player 
+            id={id}
+          /> 
+
     </div>
   );
 }
