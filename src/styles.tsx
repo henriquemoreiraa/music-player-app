@@ -48,7 +48,4 @@ export const Music = styled.div`
     width: 100%;
     flex-wrap: wrap;
     margin-top: 10px;
-    cursor: pointer;
-
-
 `;

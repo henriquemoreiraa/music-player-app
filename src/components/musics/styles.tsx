@@ -12,6 +12,7 @@ export const Container = styled.div`
         height: fit-content;
         border-radius: 10px;
         color: #16171a;
+        cursor: pointer;
     }
     img {
         margin: 0;

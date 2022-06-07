@@ -34,6 +34,7 @@ function App() {
       </C.Container>
           <Player 
             id={id}
+            setId={setId}
           /> 
 
     </div>

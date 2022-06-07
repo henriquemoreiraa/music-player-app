@@ -57,6 +57,13 @@ export const Container = styled.div`
             background-color: transparent;
             cursor: pointer;
         }
+
+        .randomMusicsButton {
+            position: relative;
+            right: 25px;
+        }
     }
+
+
 
 `; 
