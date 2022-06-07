@@ -38,6 +38,12 @@ export const Container = styled.div`
             background-color: #fff;
             border-radius: 50%;
         }
+        .volumeButton {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
     }
     .playPause{
         margin: 0 5px;

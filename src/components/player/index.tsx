@@ -1,5 +1,5 @@
 import * as C from './styles';
-import { Play, Pause, SkipBack, SkipForward, RandomMusicsTrue, RandomMusicsFalse } from './svgs';
+import { Play, Pause, SkipBack, SkipForward, RandomMusicsTrue, RandomMusicsFalse, VolumeOff, VolumeOn } from './svgs';
 import { musics } from '../../data/data';
 import { useEffect, useRef, useState } from 'react';
 
@@ -13,9 +13,11 @@ type Props = {
 export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
     const [isPlaying, setIsPlaying] = useState(true)
     const [volume, setVolume] = useState('1')
+    const [oldVolume, setOldVolume] = useState(volume)
     const [duration, setDuration] = useState(0)
     const [isRandom, setIsRandom] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
+    const [isMuted, setIsMuted] = useState(false)
 
     const audioTag = useRef(null)
     const progressBar = useRef(null)
@@ -30,6 +32,11 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
                 animationRef.current = requestAnimationFrame(whilePlaying)
                 // @ts-ignore: Object is possibly 'null'.
                 audioTag.current.volume = volume 
+                if (isMuted) {
+                    // @ts-ignore: Object is possibly 'null'.
+                    audioTag.current.muted = true
+                    // @ts-ignore: Object is possibly 'null'.
+                } else audioTag.current.muted = false
 
                 const interval = setInterval(() => {
                     // @ts-ignore: Object is possibly 'null'.
@@ -74,6 +81,7 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
         const newId = idNum + 1;
         setId(newId.toString())
     }
+
     const skipRandom = () => {
         const idNum = parseInt(id)
         const randomNum = Math.floor(Math.random() * 9)
@@ -84,11 +92,13 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
             setId(randomNum.toString())
         }
     }
+
     const skipBack = () => {
         const idNum = parseInt(id);
         const newId = idNum - 1;
         setId(newId.toString())
     }
+
     const whilePlaying = () => {
         // @ts-ignore: Object is possibly 'null'.
         progressBar.current.value = audioTag.current.currentTime
@@ -96,15 +106,18 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
         animationRef.current = requestAnimationFrame(whilePlaying)
         changeCurrentTime()
     }
+
     const changeRange = () => {
         // @ts-ignore: Object is possibly 'null'.
         audioTag.current.currentTime = progressBar.current.value
         changeCurrentTime()
     }
+    
     const changeCurrentTime = () => {
         // @ts-ignore: Object is possibly 'null'.
         setCurrentTime(progressBar.current.value)
     }
+
     
     return (
         <C.Container>
@@ -150,6 +163,9 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
             </div>
 
             <div className='test'>
+            <button className='volumeButton' onClick={() => setIsMuted(!isMuted)}>
+               {isMuted ? <VolumeOff/> : <VolumeOn />}
+            </button>
             <input
                 type="range" 
                 step="0.01"
