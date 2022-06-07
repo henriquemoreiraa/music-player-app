@@ -5,10 +5,12 @@ import { useEffect, useRef, useState } from 'react';
 
 type Props = {
     id: string;
+    isFull: boolean;
     setId: (e: string) => void
+    setIsFull: (e: boolean) => void
 }
 
-export const Player = ({ id, setId }: Props) => {
+export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
     const [isPlaying, setIsPlaying] = useState(true)
     const [volume, setVolume] = useState('1')
     const [duration, setDuration] = useState(0)
@@ -110,7 +112,7 @@ export const Player = ({ id, setId }: Props) => {
             <div className='musicDiv'>
                 {musics.map(music => (
                     id === music.id ?
-                    <div className='music'>
+                    <div onClick={() => setIsFull(!isFull)} className='music'>
                         <img src={music.album_img} />
                         <div>
                             <h1>{music.name}</h1>

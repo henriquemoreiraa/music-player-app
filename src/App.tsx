@@ -8,13 +8,15 @@ import { Musics } from './components/musics';
 
 function App() {
   const [id, setId] = useState('')
+  const [currentTitle, setCurrentTitle] = useState('')
+  const [isFull, setIsFull] = useState(false)
 
   return (
     <div>
       <C.Container>
         <div className='oi'></div>
         <div className='top'>
-        <h1 className='title'>All musics</h1>
+        <h1 className='title'>{isFull ? 'Single music' : 'All musics'}</h1>
           <div className='divSongs'>
             <C.Music>
             {musics.map(music => (
@@ -24,7 +26,11 @@ function App() {
                 author={music.author}
                 audio={music.audio}
                 setId={setId}
-                id={music.id}
+                musicId={music.id}
+                id={id}
+                setIsFull={setIsFull}
+                isFull={isFull}
+                setCurrentTitle={setCurrentTitle}
               />
               ))
               }
@@ -35,6 +41,8 @@ function App() {
           <Player 
             id={id}
             setId={setId}
+            setIsFull={setIsFull}
+            isFull={isFull}
           /> 
 
     </div>

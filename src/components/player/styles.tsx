@@ -13,6 +13,7 @@ export const Container = styled.div`
     .musicDiv {
         width: 400px;
         margin-top: 5px;
+        cursor: pointer;
     }
 
     .test {
