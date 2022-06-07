@@ -4,7 +4,7 @@ export const Container = styled.div`
     display: flex;
     background-color: #16171a;
     width: 100%;
-    height: 110px;
+    height: 14vh;
     position: fixed; 
     z-index: 1;
 
@@ -16,7 +16,30 @@ export const Container = styled.div`
     }
 
     .test {
-        width: 300px;
+        width: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+
+        input {
+            appearance: none;
+            border-radius: 10px;
+            width: 50%;
+            background-color: #494A4D;
+            height: 5px;
+            outline: none;
+            margin-right: 15px;
+        }
+        input::-webkit-slider-thumb {
+            appearance: none;
+            height: 14px;
+            width: 14px;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+    }
+    .playPause{
+        margin: 0 5px;
     }
     .music {
         display: flex;
@@ -38,17 +61,17 @@ export const Container = styled.div`
             margin-left: 8px;
         }
         img {
-            width: 100px;
-            height: 100px;
+            width: 85px;
+            height: 85px;
         }
     }
 
     .player {
         display: flex;
         justify-content: center;
+        align-items: center;
         width: 100%;
         margin: auto;
-
 
         button {
             border: none;
@@ -64,6 +87,66 @@ export const Container = styled.div`
         }
     }
 
+    .tete {
+        display: flex;
+        flex-direction: column;      
+        align-items: center;
 
+    }
+    .terere {
+        display: flex;
+        width: 225px;
+        position: relative;
+        bottom: 12px;
+    }
+    
+    .tata {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        position: relative;
+        bottom: 10px;
+        .Pduration {
+            position: relative;
+            left: 15px;
+            color: #fff;
+            font-size: 14px;
+        }
+        .PcurrentTime {
+            position: relative;
+            right: 10px;
+            color: #fff;
+            width: 35px;
+            font-size: 14px;
+        }
+    }
+    .currentProgress {
+        --seek-before-width: 0px;
 
-`; 
+        appearance: none;
+        border-radius: 10px;
+        width: 300px;
+        margin: auto;
+        background-color: #494A4D;
+        height: 5px;
+        outline: none;
+
+        ::-webkit-slider-thumb {
+            appearance: none;
+            height: 14px;
+            width: 14px;
+            background-color: #fff;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 3;
+            box-sizing: border-box;
+        }
+        
+        :active::-webkit-slider-thumb {
+            transform: scale(1.2);
+        }
+    }
+    
+    `; 
