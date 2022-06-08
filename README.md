@@ -1,7 +1,7 @@
-🎮 Music player app
+🎵 Music player app
 =========================
 
-Music player, React, Typescript and Styled Components
+Music player, using React, Typescript and Styled Components
 ---------------------------
 
 ### How it works: 
