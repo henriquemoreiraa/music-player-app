@@ -7,6 +7,7 @@ export const Container = styled.div`
     height: 14vh;
     position: fixed; 
     z-index: 1;
+    align-items: center;
 
     box-shadow: 0px -1px 7px #16171aa0;
     
@@ -68,8 +69,8 @@ export const Container = styled.div`
             margin-left: 8px;
         }
         img {
-            width: 85px;
-            height: 85px;
+            width: 70px;
+            height: 65px;
         }
     }
 
@@ -98,13 +99,13 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;      
         align-items: center;
-
+        
     }
     .terere {
         display: flex;
         width: 225px;
         position: relative;
-        bottom: 12px;
+        bottom: 18px;
     }
     
     .tata {
@@ -112,7 +113,9 @@ export const Container = styled.div`
         align-items: center;
         width: 100%;
         position: relative;
-        bottom: 10px;
+        bottom: 8px;
+        right: 10px;
+
         .Pduration {
             position: relative;
             left: 15px;
@@ -132,7 +135,7 @@ export const Container = styled.div`
 
         appearance: none;
         border-radius: 10px;
-        width: 300px;
+        width: 380px;
         margin: auto;
         background-color: #494A4D;
         height: 5px;

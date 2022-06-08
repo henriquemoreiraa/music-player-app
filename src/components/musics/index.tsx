@@ -19,9 +19,10 @@ type Props = {
     genres: string;
     isSearch: boolean;
     search: string;
+    windowWidth: number;
 }
 
-export const Musics = ({ img, name, author, audio, setId, musicId, setIsFull, isFull, id, setCurrentTitle, genre, genres, isSearch, search }: Props) => {
+export const Musics = ({ img, name, author, audio, setId, musicId, setIsFull, isFull, id, setCurrentTitle, genre, genres, isSearch, search, windowWidth }: Props) => {
     return (
         <C.Container>
             { isSearch ? 
@@ -44,7 +45,7 @@ export const Musics = ({ img, name, author, audio, setId, musicId, setIsFull, is
                             <audio src={audio} />
                         </div> : ''
                     :
-                    isFull ? 
+                    isFull && windowWidth <= 700 ? 
                         musicId === id  ?
                         <div className='containerFull'>
                             <div className='divFull'>

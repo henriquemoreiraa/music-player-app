@@ -1,13 +1,13 @@
 export const Play = () => {
     return (
-        <svg width="50" height="50" fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg width="45" height="45" fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path d="M12 2.25c-5.376 0-9.75 4.374-9.75 9.75s4.374 9.75 9.75 9.75 9.75-4.374 9.75-9.75S17.376 2.25 12 2.25Zm3.505 10.186-5.365 3.24a.506.506 0 0 1-.765-.435V8.76a.505.505 0 0 1 .765-.437l5.365 3.241a.51.51 0 0 1 0 .872Z"></path>
 </svg>
     )
 }
 export const Pause = () => {
     return (
-        <svg width="50" height="50" fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg width="45" height="45" fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2.25c-5.376 0-9.75 4.374-9.75 9.75s4.374 9.75 9.75 9.75 9.75-4.374 9.75-9.75S17.376 2.25 12 2.25ZM10.5 15A.75.75 0 1 1 9 15V9a.75.75 0 0 1 1.5 0v6Zm4.5 0a.75.75 0 1 1-1.5 0V9A.75.75 0 1 1 15 9v6Z"></path>
         </svg>
     )
@@ -64,14 +64,14 @@ export const VolumeOn = () => {
 }
 export const Home = () => {
     return (
-        <svg width="30" height="30" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg width="35" height="35" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5Z"></path>
 </svg>
     )
 }
 export const Search = () => {
     return (
-        <svg width="30" height="30" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg width="35" height="35" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path d="M11 3a8 8 0 1 0 0 16 8 8 0 1 0 0-16z"></path>
   <path d="m21 21-4.35-4.35"></path>
 </svg>
@@ -85,6 +85,17 @@ export const SearchWhite = () => {
 </svg>
     )
 }
+
+export const Menu = () => {
+    return (
+        <svg width="28" height="28" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M3 12h18"></path>
+  <path d="M3 6h18"></path>
+  <path d="M3 18h18"></path>
+</svg>
+    )
+}
+
 
 
 

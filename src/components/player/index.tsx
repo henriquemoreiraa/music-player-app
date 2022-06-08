@@ -6,14 +6,13 @@ import { useEffect, useRef, useState } from 'react';
 type Props = {
     id: string;
     isFull: boolean;
-    setId: (e: string) => void
-    setIsFull: (e: boolean) => void
+    setId: (e: string) => void;
+    setIsFull: (e: boolean) => void;
 }
 
 export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
     const [isPlaying, setIsPlaying] = useState(true)
     const [volume, setVolume] = useState('1')
-    const [oldVolume, setOldVolume] = useState(volume)
     const [duration, setDuration] = useState(0)
     const [isRandom, setIsRandom] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
@@ -21,65 +20,58 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
 
     const audioTag = useRef(null)
     const progressBar = useRef(null)
-    const animationRef = useRef()
+    const animationRef = useRef(null)
 
     useEffect(() => {
         if (id !== '') {
-            if (isPlaying) {
-                // @ts-ignore: Object is possibly 'null'.
-                audioTag.current.play()
-                // @ts-ignore: Object is possibly 'null'.
-                animationRef.current = requestAnimationFrame(whilePlaying)
-                // @ts-ignore: Object is possibly 'null'.
+            if (isPlaying) {             
+                audioTag?.current?.play()              
+                animationRef.current = requestAnimationFrame(whilePlaying)               
                 audioTag.current.volume = volume 
-                if (isMuted) {
-                    // @ts-ignore: Object is possibly 'null'.
+
+                if (isMuted) {                    
                     audioTag.current.muted = true
-                    // @ts-ignore: Object is possibly 'null'.
+
                 } else audioTag.current.muted = false
 
-                const interval = setInterval(() => {
-                    // @ts-ignore: Object is possibly 'null'.
-                    const seconds = Math.floor(audioTag?.current?.duration)
-                    setDuration(seconds)  
-                    // @ts-ignore: Object is possibly 'null'.
+                const interval = setInterval(() => {                    
+                    const seconds = Math.floor(audioTag.current.duration)
+                    setDuration(seconds)                      
                     progressBar.current.max = seconds                      
                 }, 200)
                 setInterval(() => {
                     if (duration > 0 || duration !== undefined) {
                         clearInterval(interval)
-                            // @ts-ignore: Object is possibly 'null'.
+                            
                         if (audioTag.current.currentTime === audioTag.current.duration) {
                                 isRandom ? skipRandom() : skipForward()
-                            
+                         
                             }
                     }
                 }, 1000)
-            } else {
-                // @ts-ignore: Object is possibly 'null'.
-                audioTag.current.pause()
-                // @ts-ignore: Object is possibly 'null'.
-                audioTag.current.volume = volume
-                // @ts-ignore: Object is possibly 'null'.
+            } else {               
+                audioTag.current.pause()                
+                audioTag.current.volume = volume                
                 cancelAnimationFrame(animationRef.current)
             }
         }
     }, [[], isRandom])
-
-    
+   
     const calculateDuration = (sec: number) => {
         const minutes = Math.floor(sec / 60)
         const newMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`
         const seconds = Math.floor(sec % 60)
         const newSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`
-        return `${minutes}:${seconds}`
-    }
-    
-    
+        return `${newMinutes}:${newSeconds}`
+    }   
     const skipForward = () => {
-        const idNum = parseInt(id);
-        const newId = idNum + 1;
-        setId(newId.toString())
+        if (id === '9') {
+            setId('1')
+        } else {
+            const idNum = parseInt(id);
+            const newId = idNum + 1;
+            setId(newId.toString())
+        }
     }
 
     const skipRandom = () => {
@@ -100,24 +92,19 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
     }
 
     const whilePlaying = () => {
-        // @ts-ignore: Object is possibly 'null'.
         progressBar.current.value = audioTag.current.currentTime
-        // @ts-ignore: Object is possibly 'null'.
         animationRef.current = requestAnimationFrame(whilePlaying)
         changeCurrentTime()
     }
 
     const changeRange = () => {
-        // @ts-ignore: Object is possibly 'null'.
         audioTag.current.currentTime = progressBar.current.value
         changeCurrentTime()
     }
     
     const changeCurrentTime = () => {
-        // @ts-ignore: Object is possibly 'null'.
         setCurrentTime(progressBar.current.value)
     }
-
     
     return (
         <C.Container>

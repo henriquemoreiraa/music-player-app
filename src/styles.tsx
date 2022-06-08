@@ -32,10 +32,20 @@ export const Container = styled.div`
         font-size: 40px;
         color: #16171a;   
     }
+    .showSidebar {
+      border: none;
+      outline: none;
+      background-color: transparent;
+
+      position: absolute;
+      z-index: 2;
+      left: 2px;
+      top: 20px;
+      cursor: pointer;
+    }
 
     .top {
         width: 100%;
-        height: 70px;
         box-shadow: 4px 1px 7px #c3c1c1;
 
         input {
@@ -50,7 +60,7 @@ export const Container = styled.div`
           font-size: 18px;
           padding: 5px;
         }
-        button {
+        .SearchWhite {
           position: relative;
           top: 5.2px;
           padding-right: 15px;
@@ -67,7 +77,24 @@ export const Container = styled.div`
         }
     }
       
-    
+    @media only screen and (max-width: 700px) {
+      .top {
+        height: 86vh;
+        
+        .title {
+          margin: 10px 10px;
+          text-align: center; 
+      }        
+      .divSongs {
+        width: 100vw;
+        position: relative;
+        right: -5px;
+      }
+      input {
+        margin-left: 13%;
+        width: 250px;
+      }
+    }
 `;
 
 export const Music = styled.div`

@@ -6,7 +6,7 @@ import { musicPlaying } from './types/types';
 import './App.css';
 import { Musics } from './components/musics';
 import { Sidebar } from './components/sidebar';
-import { SearchWhite } from './svgs/index'
+import { SearchWhite, Menu } from './svgs/index'
 
 function App() {
   const [id, setId] = useState('')
@@ -15,7 +15,14 @@ function App() {
   const [isSearch, setIsSearch] = useState(false)
   const [genre, setGenre] = useState('')
   const [search, setSearch] = useState('')
-
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const [isSidebar, setIsSidebar] = useState(false)
+    
+    useEffect(() => {
+      window.addEventListener("resize", () => {
+           setWindowWidth(window.innerWidth)
+      })
+    }, [])
   return (
     <div>
       <C.Container>
@@ -25,12 +32,19 @@ function App() {
             setIsSearch={setIsSearch}
             setIsFull={setIsFull}
             isSearch={isSearch}
+            isSidebar={isSidebar}
+            setIsSidebar={setIsSidebar}
           />
 
         <div className='top'>
           {isSearch ? 
-            <><input onChange={(e) => setSearch(e.target.value)} type="text" /><button><SearchWhite /></button><h1 className='searchH1'>Search for music name, author or genre </h1> </> :
-          <h1 className='title'>{isFull ? 'Single music' : 'All musics'}</h1>
+            <>
+            {windowWidth <= 700 ? <button className='showSidebar' onClick={() => setIsSidebar(!isSidebar)}><Menu /></button> : ''}
+            <input onChange={(e) => setSearch(e.target.value)} type="text" /><button className='SearchWhite'><SearchWhite /></button><h1 className='searchH1'>Search for music name, author or genre </h1> </> :
+            <>
+              {windowWidth <= 700 ? <button className='showSidebar' onClick={() => setIsSidebar(!isSidebar)}><Menu /></button> : ''}
+                        <h1 className='title'>{isFull && windowWidth <= 700 ? 'Single music' : 'All musics'}</h1>
+            </>
           }
           <div className='divSongs'>
             <C.Music>
@@ -50,6 +64,7 @@ function App() {
                 genres={genre}
                 isSearch={isSearch}
                 search={search}
+                windowWidth={windowWidth}
               />
               ))
               }
