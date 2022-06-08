@@ -129,10 +129,11 @@ export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => 
             <div className='musicDiv'>
                 
                    {musics.map(music => (
+                        
                         id === music.id ?
                         
                             <div 
-                            onClick={() => setIsFull(windowWidth <= 820 && !isFull)} className='music'>
+                            onClick={() => setIsFull(windowWidth <= 820 && !isFull)} className='music' key={music.id}>
                                 {!isFull ? 
                                 <>
                                     <img src={music.album_img} />
