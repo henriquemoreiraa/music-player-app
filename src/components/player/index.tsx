@@ -106,7 +106,7 @@ export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => 
 
     const whilePlaying = () => {
         if (windowWidth >= 830 || isFull) {
-            progressBar.current.value = audioTag.current.currentTime
+            progressBar.current.value = audioTag?.current?.currentTime
             animationRef.current = requestAnimationFrame(whilePlaying)
             changeCurrentTime()
         }
