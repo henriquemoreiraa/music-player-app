@@ -1,8 +1,4 @@
 import * as C from './styles';
-import { musicPlaying } from '../../types/types';
-import { useEffect, useRef, useState } from 'react';
-import { musics } from '../../data/data';
-
 
 type Props = {
     img: string;
@@ -11,18 +7,17 @@ type Props = {
     audio: string;
     musicId: string;
     id: string;
-    setId: (e: string) => void;
     isFull: boolean;
-    setIsFull: (e: boolean) => void;
-    setCurrentTitle: (e: string) => void;
     genre: string;
     genres: string;
     isSearch: boolean;
     search: string;
     windowWidth: number;
+    setId: (e: string) => void;
+    setIsFull: (e: boolean) => void;
 }
 
-export const Musics = ({ img, name, author, audio, setId, musicId, setIsFull, isFull, id, setCurrentTitle, genre, genres, isSearch, search, windowWidth }: Props) => {
+export const Musics = ({ img, name, author, audio, musicId, isFull, id, genre, genres, isSearch, search, windowWidth, setId }: Props) => {
     return (
         <C.Container>
             { isSearch ? 
@@ -32,10 +27,10 @@ export const Musics = ({ img, name, author, audio, setId, musicId, setIsFull, is
                     <h1>{name}</h1>
                     <h3>{author}</h3>
                     <audio src={audio} />
-                </div> : 
-                ''
-             : 
-            
+                </div> 
+                : ''
+                
+             :           
                 genres !== '' ? 
                     genre === genres ? 
                         <div className='divGenre' onClick={() => setId(musicId)}>
@@ -43,7 +38,9 @@ export const Musics = ({ img, name, author, audio, setId, musicId, setIsFull, is
                             <h1>{name}</h1>
                             <h3>{author}</h3>
                             <audio src={audio} />
-                        </div> : ''
+                        </div> 
+                        : ''
+
                     :
                     isFull && windowWidth <= 810 ? 
                         musicId === id  ?
@@ -55,15 +52,15 @@ export const Musics = ({ img, name, author, audio, setId, musicId, setIsFull, is
                             </div>
                         </div>
                         : ''
-                        :
+                        
+                    :
                         
                         <div className='divAll' onClick={() => setId(musicId) }>
                             <img src={img} />
                             <h1>{name}</h1>
                             <h3>{author}</h3>
                             <audio src={audio} />
-                        </div>
-                    
+                        </div>                   
             }
         </C.Container>
     )

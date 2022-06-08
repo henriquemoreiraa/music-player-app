@@ -1,7 +1,4 @@
 export const musics = [
-    // {
-    //     genres: ['Beats', 'Ambient', 'Eletronic', 'Classic'],
-    // },
     {
         name: 'Both of Us',
         author: 'madIRFAN',

@@ -12,12 +12,12 @@ type Props = {
 }
 
 export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => {
-    const [isPlaying, setIsPlaying] = useState(true)
-    const [volume, setVolume] = useState('1')
-    const [duration, setDuration] = useState(0)
-    const [isRandom, setIsRandom] = useState(false)
-    const [currentTime, setCurrentTime] = useState(0)
-    const [isMuted, setIsMuted] = useState(false)
+    const [isPlaying, setIsPlaying] = useState<boolean>(true)
+    const [volume, setVolume] = useState<string>('1')
+    const [duration, setDuration] = useState<number>(0)
+    const [isRandom, setIsRandom] = useState<boolean>(false)
+    const [currentTime, setCurrentTime] = useState<number>(0)
+    const [isMuted, setIsMuted] = useState<boolean>(false)
 
     const audioTag = useRef(null)
     const progressBar = useRef(null)
@@ -26,7 +26,7 @@ export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => 
     useEffect(() => {
         if (id !== '') {
             if (isPlaying) {             
-                audioTag?.current?.play()              
+                audioTag.current.play()              
                 animationRef.current = requestAnimationFrame(whilePlaying)               
                 audioTag.current.volume = volume 
 
@@ -40,6 +40,7 @@ export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => 
                     setDuration(seconds)                                     
                     if(windowWidth >= 830 || isFull) progressBar.current.max = seconds                    
                 }, 1000)
+
                 setInterval(() => {
                     if (duration > 0 || duration !== undefined) {
                         clearInterval(interval)
@@ -50,6 +51,7 @@ export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => 
                             }
                     }
                 }, 1100)
+
             } else {               
                 audioTag.current.pause()                
                 audioTag.current.volume = volume                
@@ -63,10 +65,14 @@ export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => 
         const newMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`
         const seconds = Math.floor(sec % 60)
         const newSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`
+
         return `${newMinutes}:${newSeconds}`
     }   
+
     const skipForward = () => {
-        if (isRandom) {
+        if (id === '') {
+            alert('Choose a song!')        
+        } else if (isRandom) {
             skipRandom()        
         } else if (id === '9') {
             setId('1')
@@ -89,9 +95,13 @@ export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => 
     }
 
     const skipBack = () => {
-        const idNum = parseInt(id);
-        const newId = idNum - 1;
-        setId(newId.toString())
+        if (id === '') {
+            alert('Choose a song!')        
+        } else {
+            const idNum = parseInt(id);
+            const newId = idNum - 1;
+            setId(newId.toString())
+        }
     }
 
     const whilePlaying = () => {
@@ -121,37 +131,61 @@ export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => 
                    {musics.map(music => (
                         id === music.id ?
                         
-                            <div onClick={() => setIsFull(windowWidth <= 820 && !isFull)} className='music'>
-                                {!isFull ? <>
+                            <div 
+                            onClick={() => setIsFull(windowWidth <= 820 && !isFull)} className='music'>
+                                {!isFull ? 
+                                <>
                                     <img src={music.album_img} />
                                     <div>
                                         <h1>{music.name}</h1>
                                         <h3>{music.author}</h3>
                                     </div>
-                                </> : ''}
+                                </> 
+                                : ''
+                                }
                                 <audio src={music.audio} ref={audioTag}/>
-                            </div>
-                            
+                            </div>                         
                     : ''
                     ))
                 }
             </div>
             <div className='player'>
                 <div className='tete'>
-                    { isFull || windowWidth >= 830 ? <div className='tata'>
-                        <p className='PcurrentTime'>{calculateDuration(currentTime)}</p>
-                        <input type="range" className='currentProgress' defaultValue='0' ref={progressBar} onChange={changeRange}/>
-                        <p className='Pduration'>{(duration && !isNaN(duration)) && calculateDuration(duration)}</p>
-                    </div> : ''}
+                    { isFull || windowWidth >= 830 ? 
+                        <div className='tata'>
+                            <p className='PcurrentTime'>
+                                {calculateDuration(currentTime)}
+                            </p>
+                            <input 
+                                type="range" 
+                                className='currentProgress'
+                                defaultValue='0' 
+                                ref={progressBar} 
+                                onChange={changeRange}
+                            />
+                            
+                            <p className='Pduration'>
+                                {(duration && !isNaN(duration)) && 
+                                calculateDuration(duration)}
+                            </p>
+                        </div> 
+                        : ''
+                    }
                     <div className='terere'>
-                        { windowWidth >= 830 || isFull ? <button onClick={() => setIsRandom(!isRandom)} className='randomMusicsButton'>
+                        { windowWidth >= 830 || isFull ? 
+                        <button 
+                            onClick={() => setIsRandom(!isRandom)} className='randomMusicsButton'>
                             {isRandom ? <RandomMusicsTrue /> : <RandomMusicsFalse />}
-                        </button> : ''}
+                        </button> 
+                        : ''
+                        }
                         <button onClick={skipBack}>
                             <SkipBack />
                         </button>
-                        <button className='playPause' onClick={() => setIsPlaying(!isPlaying)}>
-                            {isPlaying ?  <Pause /> : <Play />}
+                        <button 
+                            className='playPause' 
+                            onClick={() => setIsPlaying(!isPlaying)}>
+                                {isPlaying ?  <Pause /> : <Play />}
                         </button>
                         <button onClick={skipForward}>
                             <SkipForward />
@@ -161,19 +195,23 @@ export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => 
                 </div>
             </div>
 
-            { windowWidth > 825 &&<div className='test'>
-            <button className='volumeButton' onClick={() => setIsMuted(!isMuted)}>
-               {isMuted ? <VolumeOff/> : <VolumeOn />}
-            </button>
-            <input
-                type="range" 
-                step="0.01"
-                onChange={(e) => setVolume(e.target.value)} 
-                value={volume}
-                max='1'
-                min='0' 
-            />
-            </div>}
+            { windowWidth > 825 && 
+                <div className='test'>
+                <button 
+                    className='volumeButton' 
+                    onClick={() => setIsMuted(!isMuted)}>
+                    {isMuted ? <VolumeOff/> : <VolumeOn />}
+                </button>
+                <input
+                    type="range" 
+                    step="0.01"
+                    onChange={(e) => setVolume(e.target.value)} 
+                    value={volume}
+                    max='1'
+                    min='0' 
+                />
+                </div>
+            }
         </C.Container>
     )
 }
