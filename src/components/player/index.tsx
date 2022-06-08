@@ -1,5 +1,5 @@
 import * as C from './styles';
-import { Play, Pause, SkipBack, SkipForward, RandomMusicsTrue, RandomMusicsFalse, VolumeOff, VolumeOn } from './svgs';
+import { Play, Pause, SkipBack, SkipForward, RandomMusicsTrue, RandomMusicsFalse, VolumeOff, VolumeOn } from '../../svgs';
 import { musics } from '../../data/data';
 import { useEffect, useRef, useState } from 'react';
 

@@ -31,6 +31,20 @@ h3 {
     font-size: 14px;
     color: #4c4e51
 }
+.divGenre {
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 7px #c3c1c1;
+    padding: 5px 5px 25px;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: fit-content;
+    border-radius: 10px;
+    color: #16171a;
+    cursor: pointer;
+}
 
 .containerFull {
     display: flex;
