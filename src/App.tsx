@@ -6,7 +6,7 @@ import { musicPlaying } from './types/types';
 import './App.css';
 import { Musics } from './components/musics';
 import { Sidebar } from './components/sidebar';
-import { SearchWhite, Menu } from './svgs/index'
+import { SearchWhite,Search, Menu } from './svgs/index'
 
 function App() {
   const [id, setId] = useState('')
@@ -39,11 +39,11 @@ function App() {
         <div className='top'>
           {isSearch ? 
             <>
-            {windowWidth <= 700 ? <button className='showSidebar' onClick={() => setIsSidebar(!isSidebar)}><Menu /></button> : ''}
-            <input onChange={(e) => setSearch(e.target.value)} type="text" /><button className='SearchWhite'><SearchWhite /></button><h1 className='searchH1'>Search for music name, author or genre </h1> </> :
+            {windowWidth <= 820 ? <button className='showSidebar' onClick={() => setIsSidebar(!isSidebar)}><Menu /></button> : ''}
+            <input onChange={(e) => setSearch(e.target.value)} autoFocus placeholder='Search' type="text" /><h1 className='searchH1'>Search for music name, author or genre </h1> </> :
             <>
-              {windowWidth <= 700 ? <button className='showSidebar' onClick={() => setIsSidebar(!isSidebar)}><Menu /></button> : ''}
-                        <h1 className='title'>{isFull && windowWidth <= 700 ? 'Single music' : 'All musics'}</h1>
+              {windowWidth <= 820 ? <button className='showSidebar' onClick={() => setIsSidebar(!isSidebar)}><Menu /></button> : ''}
+                        <h1 className='title'>{isFull && windowWidth <= 820 ? '' : 'All musics'}</h1>
             </>
           }
           <div className='divSongs'>
@@ -77,6 +77,7 @@ function App() {
             setId={setId}
             setIsFull={setIsFull}
             isFull={isFull}
+            windowWidth={windowWidth}
           /> 
 
     </div>

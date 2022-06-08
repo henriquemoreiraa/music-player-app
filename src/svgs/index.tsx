@@ -71,7 +71,7 @@ export const Home = () => {
 }
 export const Search = () => {
     return (
-        <svg width="35" height="35" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg width="30" height="30" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path d="M11 3a8 8 0 1 0 0 16 8 8 0 1 0 0-16z"></path>
   <path d="m21 21-4.35-4.35"></path>
 </svg>
@@ -79,7 +79,7 @@ export const Search = () => {
 }
 export const SearchWhite = () => {
     return (
-        <svg width="25" height="25" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg width="25" height="25" fill="none" stroke="#5f6062" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path d="M11 3a8 8 0 1 0 0 16 8 8 0 1 0 0-16z"></path>
   <path d="m21 21-4.35-4.35"></path>
 </svg>

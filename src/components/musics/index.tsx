@@ -45,7 +45,7 @@ export const Musics = ({ img, name, author, audio, setId, musicId, setIsFull, is
                             <audio src={audio} />
                         </div> : ''
                     :
-                    isFull && windowWidth <= 700 ? 
+                    isFull && windowWidth <= 810 ? 
                         musicId === id  ?
                         <div className='containerFull'>
                             <div className='divFull'>

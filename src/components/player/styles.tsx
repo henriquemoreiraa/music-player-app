@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{isFull: boolean}>`
     display: flex;
     background-color: #16171a;
     width: 100%;
@@ -26,7 +26,7 @@ export const Container = styled.div`
         input {
             appearance: none;
             border-radius: 10px;
-            width: 50%;
+            width: 120px;
             background-color: #494A4D;
             height: 5px;
             outline: none;
@@ -156,6 +156,37 @@ export const Container = styled.div`
         
         :active::-webkit-slider-thumb {
             transform: scale(1.2);
+        }
+    }
+
+    @media only screen and (max-width: 820px) {
+        .terere {
+            top: 0;
+            right: 5%;
+        }
+        .tata {
+            display: flex;
+            align-items: center;
+            width: 88vw;
+            position: relative;
+            bottom: 0px;
+            right: -10%;
+            
+            input {
+                margin: 0;
+            }
+    }
+
+    @media only screen and (max-width: 575px) {
+        .tata {
+            right: 30px;
+
+    }
+        .terere {
+            width: 147px;
+            top: 0px;
+            right: 0;
+            left: ${props => props.isFull ? '-18' : '0'}%;
         }
     }
     

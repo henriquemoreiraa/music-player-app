@@ -63,7 +63,7 @@ h3 {
 
     img {
         margin: 0;
-        width: 160%;
+        width: 95vw;
         border-radius: 8px;
     }
 
@@ -101,7 +101,7 @@ h3 {
         
         img {
             margin: 0;
-            width: 140%;
+            width: 100%;
             border-radius: 8px;
         }
     

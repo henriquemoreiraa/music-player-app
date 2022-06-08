@@ -52,7 +52,7 @@ export const Container = styled.div`
           border: none;
           outline: none;
           background-color: #232429;
-          border-radius: 10px 0px 0px 10px; 
+          border-radius: 10px; 
           margin: 15px 0px 30px 30px;
           height: 31px;
           width: 40%;
@@ -60,24 +60,13 @@ export const Container = styled.div`
           font-size: 18px;
           padding: 5px;
         }
-        .SearchWhite {
-          position: relative;
-          top: 5.2px;
-          padding-right: 15px;
-          border-radius: 0px 10px 10px 0px;
-          border: none;
-          outline: none;
-          height: 41px;
-          background-color: #454852;
-          cursor: pointer;
-        }
         .searchH1 {
           margin-left: 20px;
           font-size: 38px;
         }
     }
       
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 820px) {
       .top {
         height: 86vh;
         

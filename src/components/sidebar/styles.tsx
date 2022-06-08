@@ -46,7 +46,7 @@ export const Container = styled.div<{ isSidebar: boolean }>`
             font-size: 18px;
         }
     }
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 820px) {
         position: absolute;
         z-index: 2;
         display: ${props => props.isSidebar ? 'block' : 'none'};

@@ -8,9 +8,10 @@ type Props = {
     isFull: boolean;
     setId: (e: string) => void;
     setIsFull: (e: boolean) => void;
+    windowWidth: number;
 }
 
-export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
+export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => {
     const [isPlaying, setIsPlaying] = useState(true)
     const [volume, setVolume] = useState('1')
     const [duration, setDuration] = useState(0)
@@ -36,9 +37,9 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
 
                 const interval = setInterval(() => {                    
                     const seconds = Math.floor(audioTag.current.duration)
-                    setDuration(seconds)                      
-                    progressBar.current.max = seconds                      
-                }, 200)
+                    setDuration(seconds)                                     
+                    if(windowWidth >= 830 || isFull) progressBar.current.max = seconds                    
+                }, 1000)
                 setInterval(() => {
                     if (duration > 0 || duration !== undefined) {
                         clearInterval(interval)
@@ -48,7 +49,7 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
                          
                             }
                     }
-                }, 1000)
+                }, 1100)
             } else {               
                 audioTag.current.pause()                
                 audioTag.current.volume = volume                
@@ -65,7 +66,9 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
         return `${newMinutes}:${newSeconds}`
     }   
     const skipForward = () => {
-        if (id === '9') {
+        if (isRandom) {
+            skipRandom()        
+        } else if (id === '9') {
             setId('1')
         } else {
             const idNum = parseInt(id);
@@ -92,14 +95,18 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
     }
 
     const whilePlaying = () => {
-        progressBar.current.value = audioTag.current.currentTime
-        animationRef.current = requestAnimationFrame(whilePlaying)
-        changeCurrentTime()
+        if (windowWidth >= 830 || isFull) {
+            progressBar.current.value = audioTag.current.currentTime
+            animationRef.current = requestAnimationFrame(whilePlaying)
+            changeCurrentTime()
+        }
     }
 
     const changeRange = () => {
-        audioTag.current.currentTime = progressBar.current.value
-        changeCurrentTime()
+        if (windowWidth >= 830 || isFull) {
+            audioTag.current.currentTime = progressBar.current.value
+            changeCurrentTime()
+        }
     }
     
     const changeCurrentTime = () => {
@@ -107,34 +114,39 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
     }
     
     return (
-        <C.Container>
+        <C.Container isFull={isFull}>
             
             <div className='musicDiv'>
-                {musics.map(music => (
-                    id === music.id ?
-                    <div onClick={() => setIsFull(!isFull)} className='music'>
-                        <img src={music.album_img} />
-                        <div>
-                            <h1>{music.name}</h1>
-                            <h3>{music.author}</h3>
-                        </div>
-                        <audio src={music.audio} ref={audioTag}/>
-                    </div>
+                
+                   {musics.map(music => (
+                        id === music.id ?
+                        
+                            <div onClick={() => setIsFull(windowWidth <= 820 && !isFull)} className='music'>
+                                {!isFull ? <>
+                                    <img src={music.album_img} />
+                                    <div>
+                                        <h1>{music.name}</h1>
+                                        <h3>{music.author}</h3>
+                                    </div>
+                                </> : ''}
+                                <audio src={music.audio} ref={audioTag}/>
+                            </div>
+                            
                     : ''
                     ))
                 }
             </div>
             <div className='player'>
                 <div className='tete'>
-                    <div className='tata'>
+                    { isFull || windowWidth >= 830 ? <div className='tata'>
                         <p className='PcurrentTime'>{calculateDuration(currentTime)}</p>
                         <input type="range" className='currentProgress' defaultValue='0' ref={progressBar} onChange={changeRange}/>
                         <p className='Pduration'>{(duration && !isNaN(duration)) && calculateDuration(duration)}</p>
-                    </div>
+                    </div> : ''}
                     <div className='terere'>
-                        <button onClick={() => setIsRandom(!isRandom)} className='randomMusicsButton'>
+                        { windowWidth >= 830 || isFull ? <button onClick={() => setIsRandom(!isRandom)} className='randomMusicsButton'>
                             {isRandom ? <RandomMusicsTrue /> : <RandomMusicsFalse />}
-                        </button>
+                        </button> : ''}
                         <button onClick={skipBack}>
                             <SkipBack />
                         </button>
@@ -149,7 +161,7 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
                 </div>
             </div>
 
-            <div className='test'>
+            { windowWidth > 825 &&<div className='test'>
             <button className='volumeButton' onClick={() => setIsMuted(!isMuted)}>
                {isMuted ? <VolumeOff/> : <VolumeOn />}
             </button>
@@ -161,7 +173,7 @@ export const Player = ({ id, setId, setIsFull, isFull }: Props) => {
                 max='1'
                 min='0' 
             />
-            </div>
+            </div>}
         </C.Container>
     )
 }
