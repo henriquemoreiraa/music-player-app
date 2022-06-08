@@ -1,4 +1,4 @@
-🎮 Music player app
+🎵 Music player app
 =========================
 
 Music player, React, Typescript and Styled Components
