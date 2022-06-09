@@ -17,7 +17,7 @@ export const Sidebar = ({ setGenre, setIsSearch, setIsFull, isSearch, isSidebar,
                 <div 
                 onClick={() => (setGenre(''), setIsSearch(false), setIsFull(false), setIsSidebar(false))} 
                 className='iniSearDivs'>
-                    <p><Home/></p> Inicial Page
+                    <p><Home/></p> Initial Page
                 </div>
 
                 <div 
