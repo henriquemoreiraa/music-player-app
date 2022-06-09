@@ -151,9 +151,9 @@ export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => 
                 }
             </div>
             <div className='player'>
-                <div className='tete'>
+                <div className='inputButtons'>
                     { isFull || windowWidth >= 830 ? 
-                        <div className='tata'>
+                        <div className='progressBar'>
                             <p className='PcurrentTime'>
                                 {calculateDuration(currentTime)}
                             </p>
@@ -172,7 +172,7 @@ export const Player = ({ id, setId, setIsFull, isFull, windowWidth }: Props) => 
                         </div> 
                         : ''
                     }
-                    <div className='terere'>
+                    <div className='buttons'>
                         { windowWidth >= 830 || isFull ? 
                         <button 
                             onClick={() => setIsRandom(!isRandom)} className='randomMusicsButton'>

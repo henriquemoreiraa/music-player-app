@@ -95,20 +95,20 @@ export const Container = styled.div<{isFull: boolean}>`
         }
     }
 
-    .tete {
+    .inputButtons {
         display: flex;
         flex-direction: column;      
         align-items: center;
         
     }
-    .terere {
+    .buttons {
         display: flex;
         width: 225px;
         position: relative;
         bottom: 18px;
     }
     
-    .tata {
+    .progressBar {
         display: flex;
         align-items: center;
         width: 100%;
@@ -160,11 +160,11 @@ export const Container = styled.div<{isFull: boolean}>`
     }
 
     @media only screen and (max-width: 820px) {
-        .terere {
+        .buttons {
             top: 0;
             right: 5%;
         }
-        .tata {
+        .progressBar {
             display: flex;
             align-items: center;
             width: 88vw;
@@ -178,11 +178,11 @@ export const Container = styled.div<{isFull: boolean}>`
     }
 
     @media only screen and (max-width: 575px) {
-        .tata {
+        .progressBar {
             right: 30px;
 
     }
-        .terere {
+        .buttons {
             width: 147px;
             top: 0px;
             right: 0;
