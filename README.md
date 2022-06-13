@@ -3,8 +3,8 @@
 
 ## Music player, using React, Typescript and Styled Components.
 
-<p>A project to play musics. Using React, Typescript and Styled Components.
-In this project the user can choose a song, filter by name, author or genre. The user can also change the
+<p>A project to play musics.</p>
+<p>In this project the user can choose a song, filter by name, author or genre. The user can also change the
 volume and listen to random songs. The project is also 100% responsive.</p>
 
 
